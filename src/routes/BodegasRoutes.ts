@@ -1,19 +1,23 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import { Routes } from "../interfaces/RoutesInterface";
+import BodegasController, { bodegasController } from "../controllers/BodegasController";
 
 class BodegasRoutes implements Routes {
-    public path = '/bodegas';
-    public router = Router();
+    public path: string;
+    public router: Router;
+    public controller: BodegasController;
 
     constructor() {
-        this.init();
+        this.path = '/bodegas';
+        this.router = Router();
+        this.controller = bodegasController
+        this.initRoutes();
     }
 
-    public init() {
-        this.router.get(`${this.path}`, (_re:Request, res:Response) => {
-            res.status(200).json({ ok: true, message: "OK" });
-        });
+    private initRoutes() {
+        this.router.get(`${this.path}`, this.controller.getBodegas)
     }
 }
 
 export default BodegasRoutes;
+export const bodeagasRoutes = new BodegasRoutes();
