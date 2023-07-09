@@ -1,14 +1,9 @@
-import express from 'express';
-import env from './config/EnvConfig';
+import App from './app';
+import BodegasRoutes from './routes/BodegasRoutes';
+// import env from './config/EnvConfig';
 
-const app = express();
-app.use(express.json());
+const app = new App([new BodegasRoutes()]);
 
-app.get('/ping', (_req, res) => {
-    console.log('Pinged here');
-    res.send('pong')
-})
+// app.use(express.json());
 
-app.listen(env.PORT, () => {
-    console.log(`Server running on port ${env.PORT}`);
-})
+app.listen();
