@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import routemap from "express-routemap";
-import { Routes } from "./interfaces/RoutesInterface";
+import { RoutesInterface } from "./interfaces/RoutesInterface";
 import env from "./config/EnvConfig";
 import chalk from "chalk";
 import { Connection } from "./db/Connection";
@@ -12,7 +12,7 @@ class App extends Connection {
     public port: number;
     public server: any;
 
-    constructor(routes: Routes[]) {
+    constructor(routes: RoutesInterface[]) {
         super();
         this.app = express();
         this.port = Number(env.PORT) || 5000;
@@ -52,7 +52,7 @@ class App extends Connection {
         this.app.use(express.json());
     }
 
-    public initRoutes(routes: Routes[]) {
+    public initRoutes(routes: RoutesInterface[]) {
         routes.forEach((route) => {
             this.app.use(`/api/${env.API_VERSION}`, route.router)
         });

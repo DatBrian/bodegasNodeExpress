@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { Routes } from "../interfaces/RoutesInterface";
 import BodegasController, { bodegasController } from "../controllers/BodegasController";
+import ValidateMiddlewareDTO from "../middleware/ValidateDTOMiddleware";
+import RouterCommon from "../common/RouterCommon";
 
-class BodegasRoutes implements Routes {
+class BodegasRoutes  extends RouterCommon<BodegasController, ValidateMiddlewareDTO>{
     public path: string;
     public router: Router;
     public controller: BodegasController;
 
     constructor() {
+        super(BodegasController, ValidateMiddlewareDTO);
         this.path = '/bodegas';
         this.router = Router();
         this.controller = bodegasController
