@@ -17,6 +17,16 @@ class BodegasController {
             res.status(500).json({ error: 'Ocurrió un error al obtener las bodegas' });
         }
     }
+
+    public createBodega = async (req: Request, res: Response) => {
+        try {
+            await this.service.createBodegas(req.body);
+            res.json("Bodega insertada correctamente:D");
+        } catch (error) {
+            console.error('Error al crear la bodega:', req.body);
+            res.status(500).json({ error: 'Ocurrió un error al crear la bodega' });
+        }
+    }
 }
 
 export default BodegasController;

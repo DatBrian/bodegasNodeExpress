@@ -20,7 +20,7 @@ class ValidateMiddlewareDTO {
                 : ((req.body = dto), next());
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ error: "Internal Server Error" });
+            return res.status(500).json({ error: "Internal Server Error " });
         }
     }
 }

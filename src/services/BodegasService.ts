@@ -1,4 +1,5 @@
 // import { Connection } from "../db/Connection";
+import BodegasDTO from "../model/dto/BodegasDTO";
 import BodegasEntity from "../model/entities/BodegasEntity";
 import BodegasRepository, { bodegasRepository } from "../repositories/BodegasRepository";
 
@@ -16,7 +17,16 @@ class BodegasService {
         } catch (error) {
             throw error;
         }
+    }
 
+    public async createBodegas(body: BodegasDTO): Promise<BodegasEntity> {
+        try {
+            const newBodegas = await this.repository.createBodega(body);
+            return newBodegas;
+        } catch (error) {
+            console.log("Service error");
+            throw error;
+        }
     }
 }
 

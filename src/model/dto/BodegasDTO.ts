@@ -1,8 +1,6 @@
-import { IsInt, IsString, IsNotEmpty, IsOptional, IsDate } from 'class-validator';
+import { IsInt, IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 class BodegasDTO {
-    @IsInt()
-    public id!: string;
 
     @IsString()
     @IsNotEmpty()
@@ -10,31 +8,19 @@ class BodegasDTO {
 
     @IsInt()
     @IsNotEmpty()
-    public estado!: string;
+    public id_responsable!: bigint;
+
+    @IsInt()
+    @IsNotEmpty()
+    public estado!: number;
 
     @IsInt()
     @IsOptional()
-    public createdBy!: number;
+    public created_by!: bigint;
 
     @IsInt()
     @IsOptional()
-    public update_by!: number;
-
-    @IsDate()
-    @IsOptional()
-    public created_at!: Date;
-
-    @IsDate()
-    @IsOptional()
-    public updated_at!: Date;
-
-    @IsDate()
-    @IsOptional()
-    public deleted_AT!: Date;
-
-    constructor(partial: Partial<BodegasDTO>) {
-        Object.assign(this, partial);
-    }
+    public update_by!: bigint;
 
 }
 export default BodegasDTO;
