@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc -w",
     "start:dev": "ts-node-dev ./src/index.ts"
   },
   "keywords": [],
