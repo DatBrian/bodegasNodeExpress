@@ -1,4 +1,5 @@
 import { Expose, Type, Transform } from 'class-transformer';
+import 'reflect-metadata';
 
 class BodegasDTO {
 
