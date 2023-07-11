@@ -1,11 +1,14 @@
-class BodegasEntity{
+class BodegasEntity {
     constructor(
-        public nombre: string,
-        public id_responsable: bigint,
-        public estado: bigint,
-        public created_by: bigint,
-        public update_by: bigint
-    ){}
+        public name: string,
+        public responsable: bigint,
+        public state: bigint,
+        public created: bigint,
+        public updated: bigint,
+        public createTime: Date,
+        public updateTime: Date,
+        public deleteTime: Date
+    ) { }
 }
 
 export default BodegasEntity;

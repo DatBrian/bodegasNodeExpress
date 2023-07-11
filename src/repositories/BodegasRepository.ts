@@ -18,7 +18,10 @@ class BodegasRepository extends Connection {
                     row.id_responsable,
                     row.estado,
                     row.created_by,
-                    row.update_by
+                    row.update_by,
+                    row.created_at,
+                    row.updated_at,
+                    row.deleted_at
                 )
             })
 

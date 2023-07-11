@@ -22,7 +22,9 @@ class BodegasRoutes extends RouterCommon<BodegasController, ValidateMiddlewareDT
 
         this.router.post(
             `${this.path}`,
-            (req, res, next) => ValidateMiddlewareDTO.validator(req, res, next, BodegasDTO),
+            (req, res, next) => {
+                ValidateMiddlewareDTO.validator(req, res, next, BodegasDTO)
+            },
             (req, res) => this.controller.createBodega(req, res)
         );
     }
