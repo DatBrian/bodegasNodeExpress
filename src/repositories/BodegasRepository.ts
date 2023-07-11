@@ -1,4 +1,4 @@
-import  { RowDataPacket } from "mysql2/promise";
+import { RowDataPacket } from "mysql2/promise";
 import { dataSource } from "../config/ConnectDataSource";
 import BodegasEntity from "../model/entities/BodegasEntity";
 import { Connection } from "../db/Connection";
@@ -39,11 +39,20 @@ class BodegasRepository extends Connection {
         try {
             const connection = await this.connect;
             const query = 'INSERT INTO bodegas SET ?';
-            await connection.query(query, body);
+            await connection.query(query, {
+                nombre: body.name,
+                id_responsable: body.responsable,
+                estado: body.state,
+                created_by: body.created,
+                update_by: body.updated,
+                created_at: body.createTime,
+                updated_at: body.updateTime,
+                deleted_at: body.deleteTime
+            });
 
             return body;
         } catch (error) {
-            console.error("Error en el repositorio");
+            console.error("Error en el repositorio", error);
             throw error
         } finally {
             connection.release();

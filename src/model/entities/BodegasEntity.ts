@@ -5,9 +5,9 @@ class BodegasEntity {
         public state: bigint,
         public created: bigint,
         public updated: bigint,
-        public createTime: Date,
-        public updateTime: Date,
-        public deleteTime: Date
+        public createTime: string,
+        public updateTime: string,
+        public deleteTime: string
     ) { }
 }
 
