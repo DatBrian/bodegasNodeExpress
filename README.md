@@ -30,6 +30,7 @@
 ### **Carpeta del proyecto ([src](src)):**
 ![Alt text](./screenshots/src.png)
 
+- `index.ts`: Archivo principal que inicializa la aplicación y configura las rutas.
 - `app.ts`: Archivo principal que configura la aplicación Express y establece las rutas y middlewares.
 - `common/`: Carpeta que contiene funciones comunes y una clase de enrutador común.
 - `config/`: Carpeta que contiene archivos de configuración, como `ConnectDataSource.ts` para la conexión a la base de datos y `EnvConfig.ts` para las variables de entorno.
@@ -40,15 +41,46 @@
 - `model/`: Carpeta que contiene los modelos de datos, como DTO y entidades.
 - `model/dto/`: Carpeta que contiene los objetos de transferencia de datos (DTO), como `BodegasDTO.ts`.
 - `model/entities/`: Carpeta que contiene las entidades del dominio, como `BodegasEntity.ts`.
-- `repositories/`: Carpeta que contiene los repositorios de datos, como `BodegasRepository.ts`.
-- `routes/`: Carpeta que contiene las rutas de la aplicación, como `BodegasRoutes.ts`.
 - `services/`: Carpeta que contiene la lógica de negocio, como `BodegasService.ts`.
-- `index.ts`: Archivo principal que inicializa la aplicación y configura las rutas.
+- `repositories/`: Carpeta que contiene los repositorios de datos, como `BodegasRepository.ts` en los que se realizan las consultas.
+- `routes/`: Carpeta que contiene las rutas de la aplicación, como `BodegasRoutes.ts`.
+
+## **Inicialización:**
+
+1. Primero debes encontrarte en la carpeta del proyecto luego de clonar el repositorio.
+
+2. Ejecuta el siguiente comando para instalar todas las dependencias:
+
+```
+npm install
+```
+
+3. Importa la base de datos: en el directorio raíz encontrarás un archivo [backup.sql](backup.sql) el cual solo tendrás que ejecutarlo en una consola de mysql.
+
+4. Cambia el nombre del archivo [.env-example](.env-example) a **.env**
+
+5. Dentro del archivo **.evn** configura las variables de entorno según tus configuraciones.
+
+6. Ejecuta el siguiente comando para inicializar todos los servicios y en la consola se mostrarán las demás instrucciones:
+
+```
+npm run start:dev
+```
+
+## Ruta de archivos:
+#### Aquí se muestra como funciona el proyecto y la ruta que recorren los datos y peticiones dentro de la estructura previamente explicada:
+
+1. Al realizar la petición al servidor la ruta de la solicitud se compara con las rutas definidas en [app.ts](./src/app.ts)-
+
+2. Ya en el archivo [app.ts](./src/app.ts) se configuran las rutas llamando al respectivo archivo de clase dependiendo de la ruta especificada anteriormente como por ejemplo [BodegasRoutes.ts](./src/routes/BodegasRoutes.ts)
+
+3. Ya en los archivos de rutas específicos se definirán los métodos disponibles y llamará al controlador de esa ruta cuando se llame a su respectivo **path**.
+
+4. En el controlador se definen los métodos que se van a utilizar en la consulta y llama al archivo de servicio.
+
+5. En el archivo de servicio se realizará toda la lógica de negocio necesaria para llamar al archivo de repositorio el que realizará las consultas y interactuará con la base de datos.
 
 # **EndPoints:**
-
-- GET /api/v1/bodegas: Obtiene todas las bodegas.
-- POST /api/v1/bodegas: Crea una nueva bodega.
 
 ## GET:
 
