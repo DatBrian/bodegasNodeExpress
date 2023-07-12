@@ -1,4 +1,3 @@
-// import { Connection } from "../db/Connection";
 import BodegasDTO from "../model/dto/BodegasDTO";
 import BodegasEntity from "../model/entities/BodegasEntity";
 import BodegasRepository, { bodegasRepository } from "../repositories/BodegasRepository";

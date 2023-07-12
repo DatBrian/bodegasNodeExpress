@@ -1,25 +1,24 @@
+import 'reflect-metadata';
 import { Expose, Type, Transform } from 'class-transformer';
 import { IsString, IsInt, IsDateString, ValidateIf, IsOptional } from 'class-validator';
-import 'reflect-metadata';
 import { formatDate } from '../../common/FunctionsCommon';
 
-class BodegasDTO {
+class ProductosDTO {
     @Expose({ name: 'name' })
     @IsString()
     @Type(() => String)
     name: string;
 
-    @Expose({ name: 'responsable' })
-    @IsInt()
-    @Transform(({ value }) =>
-        parseInt(value), { toClassOnly: true })
-    responsable: bigint;
+    @Expose({ name: 'des' })
+    @IsString()
+    @Type(() => String)
+    des: string;
 
     @Expose({ name: 'state' })
     @IsInt()
     @Transform(({ value }) =>
         parseInt(value), { toClassOnly: true })
-    state: bigint;
+    state: number;
 
     @Expose({ name: 'created' })
     @IsInt()
@@ -54,8 +53,8 @@ class BodegasDTO {
 
     constructor(
         nombre: string,
-        id_responsable: bigint,
-        estado: bigint,
+        description: string,
+        estado: number,
         created_by: bigint,
         update_by: bigint,
         created_at: string,
@@ -63,14 +62,15 @@ class BodegasDTO {
         deleted_at: string
     ) {
         this.name = nombre;
-        this.responsable = id_responsable;
+        this.des = description;
         this.state = estado;
         this.created = created_by;
         this.updated = update_by;
         this.createTime = created_at;
         this.updateTime = updated_at;
         this.deleteTime = deleted_at;
+
     }
 }
 
-export default BodegasDTO;
+export default ProductosDTO;

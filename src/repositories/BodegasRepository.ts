@@ -13,17 +13,28 @@ class BodegasRepository extends Connection {
             const [rows] = await connection.query<RowDataPacket[]>(query);
 
             const bodegas: BodegasEntity[] = rows.map((row) => {
+                const mappedRow = {
+                    name: row.nombre,
+                    responsable: row.id_responsable,
+                    state: row.estado,
+                    created: row.created_by,
+                    updated: row.update_by,
+                    createTime: row.created_at,
+                    updateTime: row.updated_at,
+                    deleteTime: row.deleted_at
+                };
+
                 return new BodegasEntity(
-                    row.nombre,
-                    row.id_responsable,
-                    row.estado,
-                    row.created_by,
-                    row.update_by,
-                    row.created_at,
-                    row.updated_at,
-                    row.deleted_at
-                )
-            })
+                    mappedRow.name,
+                    mappedRow.responsable,
+                    mappedRow.state,
+                    mappedRow.created,
+                    mappedRow.updated,
+                    mappedRow.createTime,
+                    mappedRow.updateTime,
+                    mappedRow.deleteTime
+                );
+            });
 
             return bodegas;
         } catch (error) {
@@ -37,9 +48,9 @@ class BodegasRepository extends Connection {
     public async createBodega(body: BodegasEntity): Promise<BodegasEntity> {
         const connection = await dataSource.getConnection();
         try {
-            const connection = await this.connect;
+            const connect = await this.connect;
             const query = 'INSERT INTO bodegas SET ?';
-            await connection.query(query, {
+            await connect.query(query, {
                 nombre: body.name,
                 id_responsable: body.responsable,
                 estado: body.state,

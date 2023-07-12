@@ -1,4 +1,4 @@
-import { Router } from "express";
+ import { Router } from "express";
 import BodegasController, { bodegasController } from "../controllers/BodegasController";
 import ValidateMiddlewareDTO from "../middleware/ValidateDTOMiddleware";
 import RouterCommon from "../common/RouterCommon";
@@ -13,7 +13,7 @@ class BodegasRoutes extends RouterCommon<BodegasController, ValidateMiddlewareDT
         super(BodegasController, ValidateMiddlewareDTO);
         this.path = '/bodegas';
         this.router = Router();
-        this.controller = bodegasController
+        this.controller = bodegasController;
         this.initRoutes();
     }
 
@@ -30,5 +30,4 @@ class BodegasRoutes extends RouterCommon<BodegasController, ValidateMiddlewareDT
     }
 }
 
-export default BodegasRoutes;
-export const bodeagasRoutes = new BodegasRoutes();
+export const bodegasRoutes = new BodegasRoutes();
