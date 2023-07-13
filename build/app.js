@@ -16,9 +16,9 @@ class App extends Connection_1.Connection {
         super();
         this.app = (0, express_1.default)();
         this.port = Number(EnvConfig_1.default.PORT) || 5000;
+        this.initMiddlewares();
         this.initRoutes(routes);
         this.initConnection();
-        this.initMiddlewares();
     }
     getServer() {
         return this.app;
@@ -56,7 +56,7 @@ class App extends Connection_1.Connection {
             console.log();
             console.log(chalk_1.default.bgCyan.white.bold('🗺️  Rutas disponibles: 🚴 '));
             (0, express_routemap_1.default)(this.app);
-            console.log(chalk_1.default.bgGreen.black('✨ Servidor en línea ✨'));
+            console.log(chalk_1.default.bgGreen.black('✨ Servidor en línea ✨ '));
             console.log(chalk_1.default.blue('--------------------------------------------------------------------------------'));
             console.log(chalk_1.default.green.bold(`🚀 ¡El servidor se ha levantado exitosamente en http://${EnvConfig_1.default.HOST}:${EnvConfig_1.default.PORT}!`));
             console.log(chalk_1.default.blue('--------------------------------------------------------------------------------'));

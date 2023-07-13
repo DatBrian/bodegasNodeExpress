@@ -15,7 +15,17 @@ class BodegasRepository extends Connection_1.Connection {
             const query = 'SELECT * FROM bodegas ORDER BY nombre ASC';
             const [rows] = await connection.query(query);
             const bodegas = rows.map((row) => {
-                return new BodegasEntity_1.default(row.nombre, row.id_responsable, row.estado, row.created_by, row.update_by);
+                const mappedRow = {
+                    name: row.nombre,
+                    responsable: row.id_responsable,
+                    state: row.estado,
+                    created: row.created_by,
+                    updated: row.update_by,
+                    createTime: row.created_at,
+                    updateTime: row.updated_at,
+                    deleteTime: row.deleted_at
+                };
+                return new BodegasEntity_1.default(mappedRow.name, mappedRow.responsable, mappedRow.state, mappedRow.created, mappedRow.updated, mappedRow.createTime, mappedRow.updateTime, mappedRow.deleteTime);
             });
             return bodegas;
         }
@@ -30,13 +40,22 @@ class BodegasRepository extends Connection_1.Connection {
     async createBodega(body) {
         const connection = await ConnectDataSource_1.dataSource.getConnection();
         try {
-            const connection = await this.connect;
+            const connect = await this.connect;
             const query = 'INSERT INTO bodegas SET ?';
-            await connection.query(query, body);
+            await connect.query(query, {
+                nombre: body.name,
+                id_responsable: body.responsable,
+                estado: body.state,
+                created_by: body.created,
+                update_by: body.updated,
+                created_at: body.createTime,
+                updated_at: body.updateTime,
+                deleted_at: body.deleteTime
+            });
             return body;
         }
         catch (error) {
-            console.error("Error en el repositorio");
+            console.error("Error en el repositorio", error);
             throw error;
         }
         finally {

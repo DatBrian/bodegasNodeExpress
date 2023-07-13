@@ -26,28 +26,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.bodegasRoutes = void 0;
+exports.productosRoutes = void 0;
 const express_1 = require("express");
-const BodegasController_1 = __importStar(require("../controllers/BodegasController"));
+const ProductosController_1 = __importStar(require("../controllers/ProductosController"));
 const ValidateDTOMiddleware_1 = __importDefault(require("../middleware/ValidateDTOMiddleware"));
 const RouterCommon_1 = __importDefault(require("../common/RouterCommon"));
-const BodegasDTO_1 = __importDefault(require("../model/dto/BodegasDTO"));
-class BodegasRoutes extends RouterCommon_1.default {
+const ProductosDTO_1 = __importDefault(require("../model/dto/ProductosDTO"));
+class ProductosRoutes extends RouterCommon_1.default {
     path;
     router;
     controller;
     constructor() {
-        super(BodegasController_1.default, ValidateDTOMiddleware_1.default);
-        this.path = '/bodegas';
+        super(ProductosController_1.default, ValidateDTOMiddleware_1.default);
+        this.path = '/productos';
         this.router = (0, express_1.Router)();
-        this.controller = BodegasController_1.bodegasController;
+        this.controller = ProductosController_1.productosController;
         this.initRoutes();
     }
     initRoutes() {
-        this.router.get(`${this.path}`, this.controller.getBodegas);
+        this.router.get(`${this.path}`, this.controller.getProductos);
         this.router.post(`${this.path}`, (req, res, next) => {
-            ValidateDTOMiddleware_1.default.validator(req, res, next, BodegasDTO_1.default);
-        }, (req, res) => this.controller.createBodega(req, res));
+            ValidateDTOMiddleware_1.default.validator(req, res, next, ProductosDTO_1.default);
+        }, (req, res) => this.controller.createProductos(req, res));
     }
 }
-exports.bodegasRoutes = new BodegasRoutes();
+exports.productosRoutes = new ProductosRoutes();

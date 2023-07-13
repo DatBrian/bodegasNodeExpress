@@ -9,22 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("reflect-metadata");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-require("reflect-metadata");
 const FunctionsCommon_1 = require("../../common/FunctionsCommon");
-class BodegasDTO {
+class ProductosDTO {
     name;
-    responsable;
+    des;
     state;
     created;
     updated;
     createTime;
     updateTime;
     deleteTime;
-    constructor(nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at) {
+    constructor(nombre, description, estado, created_by, update_by, created_at, updated_at, deleted_at) {
         this.name = nombre;
-        this.responsable = id_responsable;
+        this.des = description;
         this.state = estado;
         this.created = created_by;
         this.updated = update_by;
@@ -38,50 +38,50 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_transformer_1.Type)(() => String),
     __metadata("design:type", String)
-], BodegasDTO.prototype, "name", void 0);
+], ProductosDTO.prototype, "name", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)({ name: 'responsable' }),
-    (0, class_validator_1.IsInt)(),
-    (0, class_transformer_1.Transform)(({ value }) => parseInt(value), { toClassOnly: true }),
-    __metadata("design:type", BigInt)
-], BodegasDTO.prototype, "responsable", void 0);
+    (0, class_transformer_1.Expose)({ name: 'des' }),
+    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Type)(() => String),
+    __metadata("design:type", String)
+], ProductosDTO.prototype, "des", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'state' }),
     (0, class_validator_1.IsInt)(),
     (0, class_transformer_1.Transform)(({ value }) => parseInt(value), { toClassOnly: true }),
-    __metadata("design:type", BigInt)
-], BodegasDTO.prototype, "state", void 0);
+    __metadata("design:type", Number)
+], ProductosDTO.prototype, "state", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'created' }),
     (0, class_validator_1.IsInt)(),
     (0, class_transformer_1.Transform)(({ value }) => parseInt(value), { toClassOnly: true }),
     __metadata("design:type", BigInt)
-], BodegasDTO.prototype, "created", void 0);
+], ProductosDTO.prototype, "created", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'updated' }),
     (0, class_validator_1.IsInt)(),
     (0, class_transformer_1.Transform)(({ value }) => parseInt(value), { toClassOnly: true }),
     __metadata("design:type", BigInt)
-], BodegasDTO.prototype, "updated", void 0);
+], ProductosDTO.prototype, "updated", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'createTime' }),
     (0, class_validator_1.IsDateString)(),
     (0, class_validator_1.ValidateIf)((_, value) => !value),
     (0, class_transformer_1.Transform)(({ value }) => (0, FunctionsCommon_1.formatDate)(value), { toClassOnly: true }),
     __metadata("design:type", String)
-], BodegasDTO.prototype, "createTime", void 0);
+], ProductosDTO.prototype, "createTime", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'updateTime' }),
     (0, class_validator_1.IsDateString)(),
     (0, class_validator_1.ValidateIf)((_, value) => !value),
     (0, class_transformer_1.Transform)(({ value }) => (0, FunctionsCommon_1.formatDate)(value), { toClassOnly: true }),
     __metadata("design:type", String)
-], BodegasDTO.prototype, "updateTime", void 0);
+], ProductosDTO.prototype, "updateTime", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'deleteTime' }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     (0, class_transformer_1.Type)(() => String),
     __metadata("design:type", String)
-], BodegasDTO.prototype, "deleteTime", void 0);
-exports.default = BodegasDTO;
+], ProductosDTO.prototype, "deleteTime", void 0);
+exports.default = ProductosDTO;
