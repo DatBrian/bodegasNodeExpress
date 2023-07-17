@@ -84,8 +84,21 @@ npm run start:dev
 
 ## GET:
 
-**https://{host}:{port}/api/v1/{nombre_tabla}**
+**https://{host}:{port}/api/v1/bodegas** -> `Obtener todas las bodegas ordenadas`
+
+**https://{host}:{port}/api/v1/productos** -> `Obtener todos los productos ordenados por el total`
 
 ## POST:
 
-**https://{host}:{port}/api/v1/{nombre_tabla}**
+**https://{host}:{port}/api/v1/bodegas** -> `Insertar una bodega`
+
+**https://{host}:{port}/api/v1/productos** -> `Insertar un producto`
+
+---
+
+## **Consumo:**
+### Para hacer los post es necesario pasar un cuerpo válido que pueda ser aceptado por la base de datos, estas estructuras para las peticiones están definidaas dentro de la caarpeta [entities](./src/model/entities) de la carpeta [model](./src/model/), allí se encontrarán todas las entidaades asociadas a las tablas de la base de datos y pueden utilizarse para crear la petición de manera correcta.
+
+---
+
+last-update: 12/07/2023 - @DatBrian
